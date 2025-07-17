@@ -1,0 +1,25 @@
+FROM open-liberty:kernel-slim-java17-openj9
+
+USER root
+RUN apt-get update
+RUN apt-get install net-tools -y
+
+#Instalar Features.
+RUN featureUtility installFeature \
+    jakartaee-10.0 \
+    microprofile-7.0 \
+    passwordUtilities-1.1 \
+    ssl-1.0
+
+# Copiar configuracion de Open Liberty.
+COPY server.xml /opt/ol/wlp/usr/servers/defaultServer/
+# COPY vs ADD
+
+# Copiar Aplicaciones al directorio de apps.
+COPY guide-mongodb-intro.war /opt/ol/wlp/usr/servers/defaultServer/apps/
+COPY truststore.p12 /opt/ol/wlp/output/defaultServer/resources/security/truststore.p12
+
+CMD ["server", "run", "defaultServer"]
+# CMD vs ENTRYPOINT
+# verisones de Dockerfile para cada una de las opciones CMD Entrypoint, copy, add.
+
