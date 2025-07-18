@@ -1,0 +1,4 @@
+/app/src/main/java/io/openliberty/guides/application/CrewService.java
+/app/src/main/java/io/openliberty/guides/application/CrewApplication.java
+/app/src/main/java/io/openliberty/guides/application/CrewMember.java
+/app/src/main/java/io/openliberty/guides/mongo/MongoProducer.java
